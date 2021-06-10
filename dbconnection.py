@@ -1,7 +1,8 @@
 import psycopg2
 
 class Connection:
-    def __init__(self, host="localhost", port="5432", user=None, password=None):
+    def __init__(self, dbname="postgres", host="localhost", port="5432", user=None, password=None):
+        self.dbname = dbname
         self.host = host
         self.port = port
         self.user = user
@@ -9,11 +10,11 @@ class Connection:
 
     def connect(self):
         con = psycopg2.connect(
-            dbname="postgres",
-            user="postgres",
-            password="prueba",
-            host="localhost",
-            port="5432"
+            dbname=self.dbname,
+            user=self.user,
+            password=self.password,
+            host=self.host,
+            port=self.port
         )
         return con
 
